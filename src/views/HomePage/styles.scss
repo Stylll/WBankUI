@@ -1,0 +1,36 @@
+@import '../../partials/colors';
+
+.account-container {
+    display: flex;
+    justify-content: center;
+
+    .loader-container {
+        margin-top: 50px;
+        .message {
+            font-size: 18px;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+      
+    table, th, td {
+        border: 1px solid $black;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:hover {
+        background-color: $gray;
+        cursor: pointer;
+    }
+
+    th {
+        background-color: $primary-color;
+        color: $white;
+    }
+}
