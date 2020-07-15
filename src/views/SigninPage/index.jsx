@@ -5,20 +5,20 @@ import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header.component';
 import TextInput from '../../components/TextInput/TextInput.component';
 import Button from '../../components/Button/Button.component';
-import { validateSignup } from '../../helpers/validators/authValidator';
+import { validateSignin } from '../../helpers/validators/authValidator';
 import * as userActions from '../../redux/actionCreators/userActions';
 import './styles.scss';
 
-const SignupPage = ({
-  signupUser, isLoading: reduxIsLoading, userErrorMessage,
+const SigninPage = ({
+  signinUser, isLoading: reduxIsLoading, userErrorMessage,
 }) => {
   const [values, setValues] = useState({
-    fullname: '',
+    customerId: '',
     email: '',
   });
 
   const [formErrors, setFormErrors] = useState({
-    fullname: '',
+    customerId: '',
     email: '',
   });
 
@@ -42,7 +42,7 @@ const SignupPage = ({
 
   const handleClick = (event) => {
     event.preventDefault();
-    const { isValid, errors } = validateSignup(values);
+    const { isValid, errors } = validateSignin(values);
     setFormErrors({
       ...errors,
     });
@@ -52,28 +52,28 @@ const SignupPage = ({
 
     setIsLoading(true);
 
-    signupUser({
-      name: values.fullname,
+    signinUser({
+      customerId: values.customerId,
       email: values.email,
     });
   };
 
-  const navigateToSignin = () => {
-    history.push('/signin');
+  const navigateToSignup = () => {
+    history.push('/signup');
   };
 
-  const renderSignupForm = (errorMessage) => (
-        <div className="signup-container">
+  const renderSigninForm = (errorMessage) => (
+        <div className="signin-container">
             <div>
-                <p>Create an account</p>
+                <p>Sign in to account</p>
                 <span className="error-text">{errorMessage}</span>
                 <TextInput
-                    name="fullname"
-                    placeholder="Jim Halpert"
-                    title="Enter your fullname"
+                    name="customerId"
+                    placeholder="3214"
+                    title="Enter your customer id"
                     type="text"
-                    value={values.fullname}
-                    error={formErrors.fullname}
+                    value={values.customerId}
+                    error={formErrors.customerId}
                     onChange={handleChange} />
                 <TextInput
                     name="email"
@@ -84,15 +84,15 @@ const SignupPage = ({
                     error={formErrors.email}
                     onChange={handleChange} />
                 <Button
-                    title="Signup"
+                    title="Signin"
                     handleClick={handleClick}
                     showLoader={isLoading}
                     disabled={isLoading}
                 />
             </div>
             <br />
-            <h4 className="link" onClick={() => { navigateToSignin(); }}>
-              Already have an account?. click here to signin
+            <h4 className="link" onClick={() => { navigateToSignup(); }}>
+              Don't have an account?. click here to signup
             </h4>
         </div>
   );
@@ -100,18 +100,18 @@ const SignupPage = ({
   return (
         <div className="">
             <Header />
-            <div className="authpage container">
+            <div className="signinpage container">
                 <div className="form-container">
                     <h2 className="intro-text">Welcome To WBank</h2>
-                    {renderSignupForm(userErrorMessage)}
+                    {renderSigninForm(userErrorMessage)}
                 </div>
             </div>
         </div>
   );
 };
 
-SignupPage.propTypes = {
-  signupUser: PropTypes.func.isRequired,
+SigninPage.propTypes = {
+  signinUser: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   userErrorMessage: PropTypes.string.isRequired,
 };
@@ -122,7 +122,7 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = {
-  signupUser: userActions.signupUser,
+  signinUser: userActions.signinUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SigninPage);

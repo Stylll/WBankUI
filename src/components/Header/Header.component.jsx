@@ -10,15 +10,18 @@ const Header = ({
   logoutUser,
 }) => {
   const [isAuth, setIsAuth] = useState(false);
+  const [user, setUser] = useState({});
   const history = useHistory();
 
   useEffect(() => {
-    const { isAuthenticated } = getUserDetails();
+    const { isAuthenticated, userData } = getUserDetails();
 
     if (!isAuthenticated) {
       setIsAuth(false);
+      setUser({});
     } else {
       setIsAuth(true);
+      setUser(userData.user);
     }
   }, []);
 
@@ -34,6 +37,8 @@ const Header = ({
               WBank
             </div>
             <div className="topRight">
+              {isAuth && <div className="link">Customer Id: {user && user.id}</div>}
+              {isAuth && <div className="link">Welcome, {user && user.name}</div>}
               {isAuth && <div className="link">
                 <Link to="/dashboard">Dashboard</Link>
               </div>}

@@ -1,7 +1,7 @@
 
 @import '../../partials/colors';
 
-.container.authpage {
+.container.signinpage {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -10,7 +10,7 @@
         width: 550px;
     }
 
-    .signup-container {
+    .signin-container {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         margin: 40px;
         padding: 40px;
@@ -30,7 +30,7 @@
 
 /* small to medium media query */
 @media only screen and (max-width: 600px) {
-    .container.authpage {
+    .container.signinpage {
         .form-container {
             width: auto;
         }
