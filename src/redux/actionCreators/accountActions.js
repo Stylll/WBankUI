@@ -13,3 +13,18 @@ export const getAccountsFailure = (error) => ({
   type: types.GET_ACCOUNTS_FAILURE,
   error,
 });
+
+export const createAccount = (accountData) => ({
+  type: types.CREATE_ACCOUNT,
+  accountData,
+});
+
+export const createAccountSuccess = (accountData) => ({
+  type: types.CREATE_ACCOUNT_SUCCESS,
+  accountData,
+});
+
+export const createAccountFailure = (error) => ({
+  type: types.CREATE_ACCOUNT_FAILURE,
+  error,
+});

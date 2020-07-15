@@ -4,6 +4,7 @@
 .container.header {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 10px 40px;
     background-color: $primary-color;
     color: #ccc;
@@ -12,6 +13,7 @@
 
     .topRight {
         display: flex;
+        flex-wrap: wrap;
     }
     
     .link {
@@ -27,4 +29,8 @@
         cursor: pointer;
         background-color: $primary-color-1;
     }
+}
+
+.bottom.container {
+    padding: 10px;
 }

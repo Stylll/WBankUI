@@ -90,3 +90,15 @@ export const setAuthorizationToken = (token) => {
     delete axios.defaults.headers.common['x-access-token'];
   }
 };
+
+export const addToAccountList = (accounts, account) => {
+  const newAccount = {
+    accountName: account.name,
+    accountNo: account.accountNo,
+    openingBalance: account.openingBalance,
+    currentBalance: account.openingBalance,
+  };
+  accounts.push(newAccount);
+
+  return accounts;
+};

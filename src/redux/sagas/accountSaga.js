@@ -6,10 +6,17 @@ import {
   getAccounts,
   getAccountsSuccess,
   getAccountsFailure,
+  createAccount,
+  createAccountSuccess,
+  createAccountFailure,
 } from '../actionCreators/accountActions';
 
 export function* watchGetAccountsSagaAsync() {
   yield takeLatest(getAccounts().type, getAccountsSagaAsync);
+}
+
+export function* watchCreateAccountSagaAsync() {
+  yield takeLatest(createAccount().type, createAccountSagaAsync);
 }
 
 export function* getAccountsSagaAsync(action) {
@@ -21,6 +28,22 @@ export function* getAccountsSagaAsync(action) {
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(getAccountsFailure({
+      errors: error.response && error.response.data ? error.response.data.error : {},
+      message: errorMessage,
+    }));
+    toastr.error('', errorMessage || 'An error occurred');
+  }
+}
+
+export function* createAccountSagaAsync(action) {
+  try {
+    const response = yield call(AccountApi.createAccount, action.accountData);
+    yield put(createAccountSuccess(response.data.data));
+    // eslint-disable-next-line no-undef
+    toastr.success('', 'Account created successfully');
+  } catch (error) {
+    const errorMessage = apiErrorHandler(error);
+    yield put(createAccountFailure({
       errors: error.response && error.response.data ? error.response.data.error : {},
       message: errorMessage,
     }));
