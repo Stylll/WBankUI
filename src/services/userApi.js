@@ -6,6 +6,10 @@ class UserAPI {
   static signup(userData) {
     return axios.post(`${baseUrl}/customers`, userData);
   }
+
+  static signin(userData) {
+    return axios.post(`${baseUrl}/customers/authenticate`, userData);
+  }
 }
 
 export default UserAPI;

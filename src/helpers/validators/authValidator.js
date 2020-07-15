@@ -25,6 +25,25 @@ const validateSignup = (values) => {
   };
 };
 
+const validateSignin = (values) => {
+  const errors = {};
+  // customerId cannot be empty
+  if (!values.customerId || (values.customerId && !values.customerId.trim())) {
+    errors.customerId = 'customerId cannot be empty';
+  }
+
+  // email cannot be empty
+  if (!values.email || (values.email && !values.email.trim())) {
+    errors.email = 'email cannot be empty';
+  }
+
+  return {
+    isValid: isEmpty(errors),
+    errors,
+  };
+};
+
 export {
   validateSignup,
+  validateSignin,
 };

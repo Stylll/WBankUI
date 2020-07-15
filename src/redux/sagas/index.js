@@ -4,7 +4,8 @@ import * as userSaga from './userSaga';
 
 function* rootSaga() {
   yield all([
-    userSaga.watchAuthenticateUserSagaAsync(),
+    userSaga.watchSignupUserSagaAsync(),
+    userSaga.watchSigninUserSagaAsync(),
   ]);
 }
 

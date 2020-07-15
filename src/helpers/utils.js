@@ -56,12 +56,19 @@ export const apiErrorHandler = (error) => {
         errorMessage = 'Server error, try again';
         break;
       case 400:
-        if (error.response.data.errors) {
+        if (error.response.data.errors && error.response.data.errors.length) {
           validationErrors = error.response.data.errors
             .map((err) => err.msg || err.message)
             .join(', ');
           errorMessage = `${validationErrors}`;
-        } else {
+        } else if (error.response.data.errors) {
+          validationErrors = Object.keys(error.response.data.errors)
+            .map((key) => error.response.data.errors[key] || error.response.data.errors[key].msg
+              || error.response.data.errors[key].message)
+            .join(', ');
+          errorMessage = `${validationErrors}`;
+        }
+        else {
           errorMessage = error.response.data.message || error.response.statusText;
         }
         break;
