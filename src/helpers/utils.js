@@ -117,3 +117,18 @@ export const calculateDeposit = (accounts, deposit) => {
 
   return newAccounts;
 };
+
+export const calculateWithdrawal = (accounts, withdrawal) => {
+  const newAccounts = [...accounts];
+  const accountIndex = newAccounts
+    .findIndex((account) => (account.accountNo === withdrawal.accountNo));
+  if (accountIndex > -1) {
+    const accountToUpdate = newAccounts[accountIndex];
+    const balance = Number.parseFloat(accountToUpdate.currentBalance)
+    - Number.parseFloat(withdrawal.cadAmountDebited);
+    accountToUpdate.currentBalance = balance;
+    newAccounts[accountIndex] = accountToUpdate;
+  }
+
+  return newAccounts;
+};

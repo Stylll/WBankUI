@@ -45,7 +45,8 @@ const Header = ({
         </div>
         <div className="bottom container">
           {isAuth && <div>Welcome, {user && user.name}</div>}
-          {isAuth && <div>Customer Id: {user && user.id}</div>}
+          {isAuth && <div>Customer Id: {user && user.id} (Please note: you will
+          need the customer id to login to your account)</div>}
         </div>
       </Fragment>
   );

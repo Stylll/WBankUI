@@ -6,6 +6,7 @@ import Loader from '../../components/Loader/Loader.component';
 import Modal from '../../components/Modal/Modal.component';
 import CreateAccount from '../../components/CreateAccount/CreateAccount.component';
 import CreateDeposit from '../../components/CreateDeposit/CreateDeposit.component';
+import CreateWithdrawal from '../../components/CreateWithdrawal/CreateWithdrawal.component';
 import * as accountActions from '../../redux/actionCreators/accountActions';
 import './styles.scss';
 
@@ -13,7 +14,8 @@ const HomePage = ({
   accounts, getAccounts, isLoading,
 }) => {
   const [showCreateAccountModal, setShowCreateAccountModal] = useState(false);
-  const [showCreateDepositModal, setShowCreateDepositModal] = useState(true);
+  const [showCreateDepositModal, setShowCreateDepositModal] = useState(false);
+  const [showCreateWithdrawalModal, setShowCreateWithdrawalModal] = useState(false);
 
   useEffect(() => {
     getAccounts();
@@ -38,6 +40,14 @@ const HomePage = ({
 
   const hideCreateDeposit = () => {
     setShowCreateDepositModal(false);
+  };
+
+  const showCreateWithdrawal = () => {
+    setShowCreateWithdrawalModal(true);
+  };
+
+  const hideCreateWithdrawal = () => {
+    setShowCreateWithdrawalModal(false);
   };
 
   const renderTableBody = (userAccounts) => {
@@ -77,7 +87,7 @@ const HomePage = ({
             <tr>
               <th>S/N</th>
               <th>AccountNo</th>
-              <th>AccountName</th>
+              <th>Account Name</th>
               <th>Opening Bal</th>
               <th>Current Bal</th>
             </tr>
@@ -98,7 +108,7 @@ const HomePage = ({
         <div className="navbox deposit" onClick={showCreateDeposit}>
           Deposit
         </div>
-        <div className="navbox deposit" onClick={showCreateDeposit}>
+        <div className="navbox withdrawal" onClick={showCreateWithdrawal}>
           Withdrawal
         </div>
         <div className="navbox deposit" onClick={showCreateDeposit}>
@@ -121,6 +131,11 @@ const HomePage = ({
         handleModalClose={hideCreateDeposit}
       >
         <CreateDeposit closeModal={hideCreateDeposit} />
+      </Modal>
+      <Modal isModalVisible={showCreateWithdrawalModal}
+        handleModalClose={hideCreateWithdrawal}
+      >
+        <CreateWithdrawal closeModal={hideCreateWithdrawal} />
       </Modal>
     </div>
   );

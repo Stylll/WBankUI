@@ -10,6 +10,7 @@ function* rootSaga() {
     accountSaga.watchGetAccountsSagaAsync(),
     accountSaga.watchCreateAccountSagaAsync(),
     accountSaga.watchDepositAccountSagaAsync(),
+    accountSaga.watchWithdrawAccountSagaAsync(),
   ]);
 }
 

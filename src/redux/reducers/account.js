@@ -1,13 +1,18 @@
 import * as types from '../constants/actionTypes';
-import { addToAccountList, calculateDeposit } from '../../helpers/utils';
+import {
+  addToAccountList, calculateDeposit,
+  calculateWithdrawal,
+} from '../../helpers/utils';
 
 const initialState = {
   accounts: [],
   isLoading: false,
   isCreateAccountLoading: false,
   accountCreateSuccess: false,
-  isDepositAccoutLoading: false,
+  isDepositAccountLoading: false,
   accountDepositSuccess: false,
+  isWithdrawAccountLoading: false,
+  accountWithdrawalSuccess: false,
   errorMessage: '',
 };
 
@@ -57,7 +62,7 @@ const account = (state = initialState, action) => {
     case types.DEPOSIT_ACCOUNT:
       return {
         ...state,
-        isDepositAccoutLoading: true,
+        isDepositAccountLoading: true,
         errorMessage: '',
         accountDepositSuccess: false,
       };
@@ -65,16 +70,38 @@ const account = (state = initialState, action) => {
       return {
         ...state,
         accounts: calculateDeposit(state.accounts, action.requestData),
-        isDepositAccoutLoading: false,
+        isDepositAccountLoading: false,
         errorMessage: '',
         accountDepositSuccess: true,
       };
     case types.DEPOSIT_ACCOUNT_FAILURE:
       return {
         ...state,
-        isDepositAccoutLoading: false,
+        isDepositAccountLoading: false,
         errorMessage: action.error.message,
         accountDepositSuccess: false,
+      };
+    case types.WITHDRAW_ACCOUNT:
+      return {
+        ...state,
+        isWithdrawAccountLoading: true,
+        errorMessage: '',
+        accountWithdrawalSuccess: false,
+      };
+    case types.WITHDRAW_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        accounts: calculateWithdrawal(state.accounts, action.requestData),
+        isWithdrawAccountLoading: false,
+        errorMessage: '',
+        accountWithdrawalSuccess: true,
+      };
+    case types.WITHDRAW_ACCOUNT_FAILURE:
+      return {
+        ...state,
+        isWithdrawAccountLoading: false,
+        errorMessage: action.error.message,
+        accountWithdrawalSuccess: false,
       };
     default:
       return state;
