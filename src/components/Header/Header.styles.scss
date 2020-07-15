@@ -1,0 +1,30 @@
+@import '../../partials/colors';
+
+
+.container.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background-color: $primary-color;
+    color: #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    color: #F9F8F8;
+
+    .topRight {
+        display: flex;
+    }
+    
+    .link {
+        margin: 10px;
+        padding: 10px;
+        a {
+          color: $white;
+          text-decoration: none;
+        }
+    }
+
+    .link:hover {
+        cursor: pointer;
+        background-color: $primary-color-1;
+    }
+}

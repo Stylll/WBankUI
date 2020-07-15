@@ -1,0 +1,24 @@
+@import '../../partials/colors';
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  .loader {
+    border: 3px solid $primary-color;
+    border-top: 3px solid $white;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    animation: spin 1.5s linear infinite;
+    margin: 4px;
+  }
+  .message {
+    font-size: 12px;
+  }
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

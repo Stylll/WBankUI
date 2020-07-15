@@ -1,16 +1,30 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import ReduxToastr from 'react-redux-toastr';
+import store from '../../redux/store';
 
 import Routes from '../../routes';
 
-const history = createBrowserHistory();
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 const App = () => (
     <div className="App">
-      <Router history={history}>
-        <Routes />
-      </Router>
+      <Provider store={store}>
+        <Router>
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop
+          preventDuplicates
+          position="top-right"
+          getState={(state) => state.toastr} // This is the default
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar
+          closeOnToastrClick/>
+          <Routes />
+        </Router>
+      </Provider>
     </div>
 );
 
