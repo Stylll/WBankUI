@@ -11,7 +11,10 @@ import {
   createAccountFailure,
   createDeposit,
   createDepositSuccess,
-  createDepositFailure
+  createDepositFailure,
+  createWithdrawal,
+  createWithdrawalSuccess,
+  createWithdrawalFailure,
 } from '../actionCreators/accountActions';
 
 export function* watchGetAccountsSagaAsync() {
@@ -24,6 +27,10 @@ export function* watchCreateAccountSagaAsync() {
 
 export function* watchDepositAccountSagaAsync() {
   yield takeLatest(createDeposit().type, depositAccountSagaAsync);
+}
+
+export function* watchWithdrawAccountSagaAsync() {
+  yield takeLatest(createWithdrawal().type, withdrawAccountSagaAsync);
 }
 
 export function* getAccountsSagaAsync(action) {
@@ -67,6 +74,22 @@ export function* depositAccountSagaAsync(action) {
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(createDepositFailure({
+      errors: error.response && error.response.data ? error.response.data.error : {},
+      message: errorMessage,
+    }));
+    toastr.error('', errorMessage || 'An error occurred');
+  }
+}
+
+export function* withdrawAccountSagaAsync(action) {
+  try {
+    const response = yield call(AccountApi.makeWithdrawal, action.requestData);
+    yield put(createWithdrawalSuccess(response.data.data));
+    // eslint-disable-next-line no-undef
+    toastr.success('', 'Account withdrawal completed');
+  } catch (error) {
+    const errorMessage = apiErrorHandler(error);
+    yield put(createWithdrawalFailure({
       errors: error.response && error.response.data ? error.response.data.error : {},
       message: errorMessage,
     }));

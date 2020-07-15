@@ -5,13 +5,13 @@ import * as accountActions from '../../redux/actionCreators/accountActions';
 import TextInput from '../TextInput/TextInput.component';
 import Button from '../Button/Button.component';
 import Dropdown from '../Dropdown/Dropdown.component';
-import { validateCreateDeposit } from '../../helpers/validators/accountValidator';
+import { validateCreateWithdrawal } from '../../helpers/validators/accountValidator';
 import { currencies } from '../../helpers/defaults';
-import './CreateDeposit.styles.scss';
+import './CreateWithdrawal.styles.scss';
 
-const CreateDeposit = ({
-  createDeposit, isLoading: reduxIsLoading, closeModal,
-  errorMessage, accountDepositSuccess,
+const CreateWithdrawal = ({
+  createWithdrawal, isLoading: reduxIsLoading, closeModal,
+  errorMessage, accountWithdrawalSuccess,
 }) => {
   const [values, setValues] = useState({
     accountNo: '',
@@ -30,7 +30,7 @@ const CreateDeposit = ({
   const formSubmitted = useRef(false);
 
   useEffect(() => {
-    if (!reduxIsLoading && accountDepositSuccess && formSubmitted.current) {
+    if (!reduxIsLoading && accountWithdrawalSuccess && formSubmitted.current) {
       setIsLoading(false);
       closeModal();
       formSubmitted.current = false;
@@ -41,7 +41,7 @@ const CreateDeposit = ({
       setIsLoading(false);
       formSubmitted.current = false;
     }
-  }, [reduxIsLoading, accountDepositSuccess, closeModal]);
+  }, [reduxIsLoading, accountWithdrawalSuccess, closeModal]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -53,7 +53,7 @@ const CreateDeposit = ({
 
   const handleClick = (event) => {
     event.preventDefault();
-    const { isValid, errors } = validateCreateDeposit(values);
+    const { isValid, errors } = validateCreateWithdrawal(values);
     setFormErrors({
       ...errors,
     });
@@ -63,7 +63,7 @@ const CreateDeposit = ({
 
     setIsLoading(true);
 
-    createDeposit({
+    createWithdrawal({
       accountNo: values.accountNo,
       amount: values.amount,
       currency: values.currency,
@@ -73,14 +73,14 @@ const CreateDeposit = ({
   };
 
   const renderCreateForm = () => (
-    <div className="deposit-container">
+    <div className="withdraw-container">
         <div>
-            <p>Create a deposit</p>
+            <p>Create a withdrawal</p>
             <span className="error-text">{errorMessage}</span>
             <TextInput
                 name="accountNo"
                 placeholder="3245"
-                title="Enter the account number to deposit"
+                title="Enter the account number to withdraw from"
                 type="text"
                 value={values.accountNo}
                 error={formErrors.accountNo}
@@ -88,7 +88,7 @@ const CreateDeposit = ({
             <TextInput
                 name="amount"
                 placeholder="5000"
-                title="Enter the amount to deposit"
+                title="Enter the amount to withdraw"
                 type="text"
                 value={values.amount}
                 error={formErrors.amount}
@@ -105,7 +105,7 @@ const CreateDeposit = ({
             />
             <br />
             <Button
-                title="Deposit"
+                title="Withdraw"
                 handleClick={handleClick}
                 showLoader={isLoading}
                 disabled={isLoading}
@@ -116,7 +116,7 @@ const CreateDeposit = ({
   );
 
   return (
-        <div className="deposit-account-container">
+        <div className="withdraw-account-container">
             <div className="form-container">
                     {renderCreateForm()}
                 </div>
@@ -124,22 +124,22 @@ const CreateDeposit = ({
   );
 };
 
-CreateDeposit.propTypes = {
-  createDeposit: PropTypes.func.isRequired,
+CreateWithdrawal.propTypes = {
+  createWithdrawal: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  accountDepositSuccess: PropTypes.bool.isRequired,
+  accountWithdrawalSuccess: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ account }) => ({
-  isLoading: account.isDepositAccountLoading,
-  accountDepositSuccess: account.accountDepositSuccess,
+  isLoading: account.isWithdrawAccountLoading,
+  accountWithdrawalSuccess: account.accountWithdrawalSuccess,
   errorMessage: account.errorMessage,
 });
 
 const mapDispatchToProps = {
-  createDeposit: accountActions.createDeposit,
+  createWithdrawal: accountActions.createWithdrawal,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateDeposit);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateWithdrawal);

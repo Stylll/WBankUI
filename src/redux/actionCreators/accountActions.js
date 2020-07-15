@@ -43,3 +43,18 @@ export const createDepositFailure = (error) => ({
   type: types.DEPOSIT_ACCOUNT_FAILURE,
   error,
 });
+
+export const createWithdrawal = (requestData) => ({
+  type: types.WITHDRAW_ACCOUNT,
+  requestData,
+});
+
+export const createWithdrawalSuccess = (requestData) => ({
+  type: types.WITHDRAW_ACCOUNT_SUCCESS,
+  requestData,
+});
+
+export const createWithdrawalFailure = (error) => ({
+  type: types.WITHDRAW_ACCOUNT_FAILURE,
+  error,
+});

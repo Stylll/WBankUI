@@ -14,6 +14,10 @@ class AccountAPI {
   static makeDeposit(requestData) {
     return axios.post(`${baseUrl}/accounts/${requestData.accountNo}/deposits`, requestData);
   }
+
+  static makeWithdrawal(requestData) {
+    return axios.post(`${baseUrl}/accounts/${requestData.accountNo}/withdraws`, requestData);
+  }
 }
 
 export default AccountAPI;
