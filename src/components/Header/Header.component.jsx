@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { getUserDetails, logout } from '../../helpers/utils';
 import * as UserActions from '../../redux/actionCreators/userActions';
 import './Header.styles.scss';
@@ -32,21 +32,22 @@ const Header = ({
   };
 
   return (
+      <Fragment>
         <div className="header container">
             <div className="link">
               WBank
             </div>
             <div className="topRight">
-              {isAuth && <div className="link">Customer Id: {user && user.id}</div>}
-              {isAuth && <div className="link">Welcome, {user && user.name}</div>}
-              {isAuth && <div className="link">
-                <Link to="/dashboard">Dashboard</Link>
-              </div>}
               {isAuth && <div className="link" onClick={handleLogout}>
                 logout
               </div>}
             </div>
         </div>
+        <div className="bottom container">
+          {isAuth && <div>Welcome, {user && user.name}</div>}
+          {isAuth && <div>Customer Id: {user && user.id}</div>}
+        </div>
+      </Fragment>
   );
 };
 

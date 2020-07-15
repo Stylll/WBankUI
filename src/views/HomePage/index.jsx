@@ -1,14 +1,18 @@
-import React, {  useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header.component';
 import Loader from '../../components/Loader/Loader.component';
+import Modal from '../../components/Modal/Modal.component';
+import CreateAccount from '../../components/CreateAccount/CreateAccount.component';
 import * as accountActions from '../../redux/actionCreators/accountActions';
 import './styles.scss';
 
 const HomePage = ({
   accounts, getAccounts, isLoading,
 }) => {
+  const [showCreateAccountModal, setShowCreateAccountModal] = useState(false);
+
   useEffect(() => {
     getAccounts();
   }, [getAccounts]);
@@ -16,6 +20,14 @@ const HomePage = ({
   const loaderStyles = {
     width: '20px',
     height: '20px',
+  };
+
+  const showCreateAccount = () => {
+    setShowCreateAccountModal(true);
+  };
+
+  const hideCreateAccount = () => {
+    setShowCreateAccountModal(false);
   };
 
   const renderTableBody = (userAccounts) => {
@@ -69,6 +81,11 @@ const HomePage = ({
   return (
     <div>
       <Header />
+      <div className="navigation-container">
+        <div className="navbox create" onClick={showCreateAccount}>
+          Create Account
+        </div>
+      </div>
       <div className="account-container">
         <div>
           {isLoading && <Loader customStyles={loaderStyles} message="fetching account records, hang tight..." />}
@@ -76,6 +93,11 @@ const HomePage = ({
           {!isLoading && renderTable(accounts)}
         </div>
       </div>
+      <Modal isModalVisible={showCreateAccountModal}
+        handleModalClose={hideCreateAccount}
+      >
+        <CreateAccount closeModal={hideCreateAccount} />
+      </Modal>
     </div>
   );
 };
@@ -83,13 +105,11 @@ const HomePage = ({
 HomePage.propTypes = {
   getAccounts: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  userErrorMessage: PropTypes.string.isRequired,
   accounts: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = ({ account }) => ({
   isLoading: account.isLoading,
-  userErrorMessage: account.errorMessage,
   accounts: account.accounts,
 });
 

@@ -6,6 +6,10 @@ class AccountAPI {
   static getAccounts() {
     return axios.get(`${baseUrl}/accounts`);
   }
+
+  static createAccount(accountData) {
+    return axios.post(`${baseUrl}/accounts`, accountData);
+  }
 }
 
 export default AccountAPI;
