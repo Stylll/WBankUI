@@ -10,6 +10,10 @@ class AccountAPI {
   static createAccount(accountData) {
     return axios.post(`${baseUrl}/accounts`, accountData);
   }
+
+  static makeDeposit(requestData) {
+    return axios.post(`${baseUrl}/accounts/${requestData.accountNo}/deposits`, requestData);
+  }
 }
 
 export default AccountAPI;
