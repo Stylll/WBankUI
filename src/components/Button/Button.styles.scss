@@ -1,0 +1,53 @@
+@import '../../partials/colors';
+
+.btn-button {
+  padding: 4px 2px;
+  &>button {
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid $primary-color;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    text-transform: capitalize;
+    cursor: pointer;
+    outline: none;
+    color: $primary-color;
+    font-size: 14px;
+    font-weight: 700;
+    background-image: linear-gradient($secondary-color, $secondary-color);
+    background-size: 100% 0%;
+    background-repeat:no-repeat;
+    background-position: bottom;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: $white !important;
+      background-size: 100% 100%;
+      border: none;
+    }
+    &:active {
+      background-image: linear-gradient($primary-color, $primary-color);
+      background-size: 100% 100%;
+      border: none;
+      color: $white;
+    }
+    &:disabled {
+      color: $gray !important;
+      border-color: $gray !important;
+      cursor: default;
+      .up-loader {
+        border-color: $gray;
+        border-top-color: $white;
+      }
+      &:hover {
+        background-size: 100% 0%;
+        border-color: $gray !important;
+        border: 1px solid $gray;
+        color: $gray !important;
+      }
+    }
+  }
+}
