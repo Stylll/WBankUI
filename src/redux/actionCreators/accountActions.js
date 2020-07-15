@@ -28,3 +28,18 @@ export const createAccountFailure = (error) => ({
   type: types.CREATE_ACCOUNT_FAILURE,
   error,
 });
+
+export const createDeposit = (requestData) => ({
+  type: types.DEPOSIT_ACCOUNT,
+  requestData,
+});
+
+export const createDepositSuccess = (requestData) => ({
+  type: types.DEPOSIT_ACCOUNT_SUCCESS,
+  requestData,
+});
+
+export const createDepositFailure = (error) => ({
+  type: types.DEPOSIT_ACCOUNT_FAILURE,
+  error,
+});

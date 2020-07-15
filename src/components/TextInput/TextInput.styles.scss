@@ -22,6 +22,9 @@
       &:focus {
         border-color: $primary-color;
       }
+      &::placeholder{
+        color: $gray;
+      }
     }
     .info {
       font-size: 12px;

@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header.component';
 import Loader from '../../components/Loader/Loader.component';
 import Modal from '../../components/Modal/Modal.component';
 import CreateAccount from '../../components/CreateAccount/CreateAccount.component';
+import CreateDeposit from '../../components/CreateDeposit/CreateDeposit.component';
 import * as accountActions from '../../redux/actionCreators/accountActions';
 import './styles.scss';
 
@@ -12,6 +13,7 @@ const HomePage = ({
   accounts, getAccounts, isLoading,
 }) => {
   const [showCreateAccountModal, setShowCreateAccountModal] = useState(false);
+  const [showCreateDepositModal, setShowCreateDepositModal] = useState(true);
 
   useEffect(() => {
     getAccounts();
@@ -28,6 +30,14 @@ const HomePage = ({
 
   const hideCreateAccount = () => {
     setShowCreateAccountModal(false);
+  };
+
+  const showCreateDeposit = () => {
+    setShowCreateDepositModal(true);
+  };
+
+  const hideCreateDeposit = () => {
+    setShowCreateDepositModal(false);
   };
 
   const renderTableBody = (userAccounts) => {
@@ -85,6 +95,15 @@ const HomePage = ({
         <div className="navbox create" onClick={showCreateAccount}>
           Create Account
         </div>
+        <div className="navbox deposit" onClick={showCreateDeposit}>
+          Deposit
+        </div>
+        <div className="navbox deposit" onClick={showCreateDeposit}>
+          Withdrawal
+        </div>
+        <div className="navbox deposit" onClick={showCreateDeposit}>
+          Transfer
+        </div>
       </div>
       <div className="account-container">
         <div>
@@ -97,6 +116,11 @@ const HomePage = ({
         handleModalClose={hideCreateAccount}
       >
         <CreateAccount closeModal={hideCreateAccount} />
+      </Modal>
+      <Modal isModalVisible={showCreateDepositModal}
+        handleModalClose={hideCreateDeposit}
+      >
+        <CreateDeposit closeModal={hideCreateDeposit} />
       </Modal>
     </div>
   );

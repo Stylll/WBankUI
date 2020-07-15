@@ -102,3 +102,18 @@ export const addToAccountList = (accounts, account) => {
 
   return accounts;
 };
+
+export const calculateDeposit = (accounts, deposit) => {
+  const newAccounts = [...accounts];
+  const accountIndex = newAccounts
+    .findIndex((account) => (account.accountNo === deposit.accountNo));
+  if (accountIndex > -1) {
+    const accountToUpdate = newAccounts[accountIndex];
+    const balance = Number.parseFloat(accountToUpdate.currentBalance)
+    + Number.parseFloat(deposit.cadAmount);
+    accountToUpdate.currentBalance = balance;
+    newAccounts[accountIndex] = accountToUpdate;
+  }
+
+  return newAccounts;
+};
