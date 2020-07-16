@@ -132,3 +132,19 @@ export const calculateWithdrawal = (accounts, withdrawal) => {
 
   return newAccounts;
 };
+
+export const calculateTransfer = (accounts, transfer) => {
+  console.log('transfer: ', transfer);
+  const newAccounts = [...accounts];
+  const accountIndex = newAccounts
+    .findIndex((account) => (account.accountNo === transfer.accountNo));
+  if (accountIndex > -1) {
+    const accountToUpdate = newAccounts[accountIndex];
+    const balance = Number.parseFloat(accountToUpdate.currentBalance)
+    - Number.parseFloat(transfer.cadAmountTransferred);
+    accountToUpdate.currentBalance = balance;
+    newAccounts[accountIndex] = accountToUpdate;
+  }
+
+  return newAccounts;
+};

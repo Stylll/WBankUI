@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 import {
   addToAccountList, calculateDeposit,
-  calculateWithdrawal,
+  calculateWithdrawal, calculateTransfer,
 } from '../../helpers/utils';
 
 const initialState = {
@@ -13,6 +13,8 @@ const initialState = {
   accountDepositSuccess: false,
   isWithdrawAccountLoading: false,
   accountWithdrawalSuccess: false,
+  isTransferAccountLoading: false,
+  accountTransferSuccess: false,
   errorMessage: '',
 };
 
@@ -102,6 +104,28 @@ const account = (state = initialState, action) => {
         isWithdrawAccountLoading: false,
         errorMessage: action.error.message,
         accountWithdrawalSuccess: false,
+      };
+    case types.TRANSFER_ACCOUNT:
+      return {
+        ...state,
+        isTransferAccountLoading: true,
+        errorMessage: '',
+        accountTransferSuccess: false,
+      };
+    case types.TRANSFER_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        accounts: calculateTransfer(state.accounts, action.requestData),
+        isTransferAccountLoading: false,
+        errorMessage: '',
+        accountTransferSuccess: true,
+      };
+    case types.TRANSFER_ACCOUNT_FAILURE:
+      return {
+        ...state,
+        isTransferAccountLoading: false,
+        errorMessage: action.error.message,
+        accountTransferSuccess: false,
       };
     default:
       return state;

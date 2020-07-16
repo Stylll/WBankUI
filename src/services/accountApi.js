@@ -18,6 +18,10 @@ class AccountAPI {
   static makeWithdrawal(requestData) {
     return axios.post(`${baseUrl}/accounts/${requestData.accountNo}/withdraws`, requestData);
   }
+
+  static makeTransfer(requestData) {
+    return axios.post(`${baseUrl}/accounts/${requestData.accountNo}/transfers`, requestData);
+  }
 }
 
 export default AccountAPI;

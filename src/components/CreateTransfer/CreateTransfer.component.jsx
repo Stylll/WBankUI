@@ -5,22 +5,24 @@ import * as accountActions from '../../redux/actionCreators/accountActions';
 import TextInput from '../TextInput/TextInput.component';
 import Button from '../Button/Button.component';
 import Dropdown from '../Dropdown/Dropdown.component';
-import { validateCreateWithdrawal } from '../../helpers/validators/accountValidator';
+import { validateCreateTransfer } from '../../helpers/validators/accountValidator';
 import { currencies } from '../../helpers/defaults';
-import './CreateWithdrawal.styles.scss';
+import './CreateTransfer.styles.scss';
 
-const CreateWithdrawal = ({
-  createWithdrawal, isLoading: reduxIsLoading, closeModal,
-  errorMessage, accountWithdrawalSuccess,
+const CreateTransfer = ({
+  createTransfer, isLoading: reduxIsLoading, closeModal,
+  errorMessage, accountTransferSuccess,
 }) => {
   const [values, setValues] = useState({
     accountNo: '',
+    transferAccountNo: '',
     amount: '',
     currency: '',
   });
 
   const [formErrors, setFormErrors] = useState({
     accountNo: '',
+    transferAccountNo: '',
     amount: '',
     currency: '',
   });
@@ -30,7 +32,7 @@ const CreateWithdrawal = ({
   const formSubmitted = useRef(false);
 
   useEffect(() => {
-    if (!reduxIsLoading && accountWithdrawalSuccess && formSubmitted.current) {
+    if (!reduxIsLoading && accountTransferSuccess && formSubmitted.current) {
       setIsLoading(false);
       closeModal();
       formSubmitted.current = false;
@@ -41,7 +43,7 @@ const CreateWithdrawal = ({
       setIsLoading(false);
       formSubmitted.current = false;
     }
-  }, [reduxIsLoading, accountWithdrawalSuccess, closeModal]);
+  }, [reduxIsLoading, accountTransferSuccess, closeModal]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -53,7 +55,7 @@ const CreateWithdrawal = ({
 
   const handleClick = (event) => {
     event.preventDefault();
-    const { isValid, errors } = validateCreateWithdrawal(values);
+    const { isValid, errors } = validateCreateTransfer(values);
     setFormErrors({
       ...errors,
     });
@@ -63,8 +65,9 @@ const CreateWithdrawal = ({
 
     setIsLoading(true);
 
-    createWithdrawal({
+    createTransfer({
       accountNo: values.accountNo,
+      transferAccountNo: values.transferAccountNo,
       amount: values.amount,
       currency: values.currency,
     });
@@ -73,22 +76,30 @@ const CreateWithdrawal = ({
   };
 
   const renderCreateForm = () => (
-    <div className="withdraw-container">
+    <div className="transfer-container">
         <div>
-            <p>Make a withdrawal</p>
+            <p>Make a transfer</p>
             <span className="error-text">{errorMessage}</span>
             <TextInput
                 name="accountNo"
                 placeholder="3245"
-                title="Enter the account number to withdraw from"
+                title="Enter the account number to transfer from"
                 type="text"
                 value={values.accountNo}
                 error={formErrors.accountNo}
                 onChange={handleChange} />
             <TextInput
+                name="transferAccountNo"
+                placeholder="1294"
+                title="Enter the account number to transfer to"
+                type="text"
+                value={values.transferAccountNo}
+                error={formErrors.transferAccountNo}
+                onChange={handleChange} />
+            <TextInput
                 name="amount"
                 placeholder="5000"
-                title="Enter the amount to withdraw"
+                title="Enter the amount to transfer"
                 type="text"
                 value={values.amount}
                 error={formErrors.amount}
@@ -105,7 +116,7 @@ const CreateWithdrawal = ({
             />
             <br />
             <Button
-                title="Withdraw"
+                title="Transfer"
                 handleClick={handleClick}
                 showLoader={isLoading}
                 disabled={isLoading}
@@ -116,7 +127,7 @@ const CreateWithdrawal = ({
   );
 
   return (
-        <div className="withdraw-account-container">
+        <div className="transfer-account-container">
             <div className="form-container">
                     {renderCreateForm()}
                 </div>
@@ -124,22 +135,22 @@ const CreateWithdrawal = ({
   );
 };
 
-CreateWithdrawal.propTypes = {
-  createWithdrawal: PropTypes.func.isRequired,
+CreateTransfer.propTypes = {
+  createTransfer: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  accountWithdrawalSuccess: PropTypes.bool.isRequired,
+  accountTransferSuccess: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ account }) => ({
-  isLoading: account.isWithdrawAccountLoading,
-  accountWithdrawalSuccess: account.accountWithdrawalSuccess,
+  isLoading: account.isTransferAccountLoading,
+  accountTransferSuccess: account.accountTransferSuccess,
   errorMessage: account.errorMessage,
 });
 
 const mapDispatchToProps = {
-  createWithdrawal: accountActions.createWithdrawal,
+  createTransfer: accountActions.createTransfer,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateWithdrawal);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTransfer);

@@ -15,6 +15,9 @@ import {
   createWithdrawal,
   createWithdrawalSuccess,
   createWithdrawalFailure,
+  createTransfer,
+  createTransferSuccess,
+  createTransferFailure,
 } from '../actionCreators/accountActions';
 
 export function* watchGetAccountsSagaAsync() {
@@ -31,6 +34,10 @@ export function* watchDepositAccountSagaAsync() {
 
 export function* watchWithdrawAccountSagaAsync() {
   yield takeLatest(createWithdrawal().type, withdrawAccountSagaAsync);
+}
+
+export function* watchTransferAccountSagaAsync() {
+  yield takeLatest(createTransfer().type, transferAccountSagaAsync);
 }
 
 export function* getAccountsSagaAsync(action) {
@@ -90,6 +97,21 @@ export function* withdrawAccountSagaAsync(action) {
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(createWithdrawalFailure({
+      errors: error.response && error.response.data ? error.response.data.error : {},
+      message: errorMessage,
+    }));
+    toastr.error('', errorMessage || 'An error occurred');
+  }
+}
+export function* transferAccountSagaAsync(action) {
+  try {
+    const response = yield call(AccountApi.makeTransfer, action.requestData);
+    yield put(createTransferSuccess(response.data.data));
+    // eslint-disable-next-line no-undef
+    toastr.success('', 'Account transfer completed');
+  } catch (error) {
+    const errorMessage = apiErrorHandler(error);
+    yield put(createTransferFailure({
       errors: error.response && error.response.data ? error.response.data.error : {},
       message: errorMessage,
     }));
