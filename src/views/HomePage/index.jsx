@@ -7,6 +7,7 @@ import Modal from '../../components/Modal/Modal.component';
 import CreateAccount from '../../components/CreateAccount/CreateAccount.component';
 import CreateDeposit from '../../components/CreateDeposit/CreateDeposit.component';
 import CreateWithdrawal from '../../components/CreateWithdrawal/CreateWithdrawal.component';
+import CreateTransfer from '../../components/CreateTransfer/CreateTransfer.component';
 import * as accountActions from '../../redux/actionCreators/accountActions';
 import './styles.scss';
 
@@ -16,6 +17,7 @@ const HomePage = ({
   const [showCreateAccountModal, setShowCreateAccountModal] = useState(false);
   const [showCreateDepositModal, setShowCreateDepositModal] = useState(false);
   const [showCreateWithdrawalModal, setShowCreateWithdrawalModal] = useState(false);
+  const [showCreateTransferModal, setShowCreateTransferModal] = useState(false);
 
   useEffect(() => {
     getAccounts();
@@ -48,6 +50,14 @@ const HomePage = ({
 
   const hideCreateWithdrawal = () => {
     setShowCreateWithdrawalModal(false);
+  };
+
+  const showCreateTransfer = () => {
+    setShowCreateTransferModal(true);
+  };
+
+  const hideCreateTransfer = () => {
+    setShowCreateTransferModal(false);
   };
 
   const renderTableBody = (userAccounts) => {
@@ -111,14 +121,14 @@ const HomePage = ({
         <div className="navbox withdrawal" onClick={showCreateWithdrawal}>
           Withdrawal
         </div>
-        <div className="navbox deposit" onClick={showCreateDeposit}>
+        <div className="navbox transfer" onClick={showCreateTransfer}>
           Transfer
         </div>
       </div>
       <div className="account-container">
         <div>
           {isLoading && <Loader customStyles={loaderStyles} message="fetching account records, hang tight..." />}
-          {!isLoading && (<p>My Accounts</p>)}
+          {!isLoading && (<h3>My Accounts</h3>)}
           {!isLoading && renderTable(accounts)}
         </div>
       </div>
@@ -136,6 +146,11 @@ const HomePage = ({
         handleModalClose={hideCreateWithdrawal}
       >
         <CreateWithdrawal closeModal={hideCreateWithdrawal} />
+      </Modal>
+      <Modal isModalVisible={showCreateTransferModal}
+        handleModalClose={hideCreateTransfer}
+      >
+        <CreateTransfer closeModal={hideCreateTransfer} />
       </Modal>
     </div>
   );

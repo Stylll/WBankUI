@@ -1,0 +1,9 @@
+@import '../../partials/colors';
+
+.footer {
+    background-color: $footer-bg-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+}

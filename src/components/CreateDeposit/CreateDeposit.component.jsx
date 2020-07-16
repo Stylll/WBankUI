@@ -75,7 +75,7 @@ const CreateDeposit = ({
   const renderCreateForm = () => (
     <div className="deposit-container">
         <div>
-            <p>Create a deposit</p>
+            <p>Make a deposit</p>
             <span className="error-text">{errorMessage}</span>
             <TextInput
                 name="accountNo"

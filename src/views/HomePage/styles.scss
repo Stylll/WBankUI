@@ -37,11 +37,15 @@
 
 .navigation-container {
     display: flex;
+    flex-wrap: wrap;
     margin: 20px;
     .navbox {
         padding: 10px;
-        margin: 0 20px;
+        width: 150px;
+        margin: 5px 20px;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        text-align: center;
+        vertical-align: middle;
         color: $white;
         &:hover {
             cursor: pointer;
@@ -56,6 +60,9 @@
     .navbox.withdrawal {
         background-color: $orange;
     }
+    .navbox.transfer {
+        background-color: $purple;
+    }
 }
 
 /* small to medium media query */
@@ -65,5 +72,10 @@
         overflow-x: scroll;
         margin-left: 20px;
         margin-right: 20px;
+    }
+    .navigation-container {
+        .navbox {
+            width: 100px;
+        }
     }
 }

@@ -5,10 +5,13 @@ import ReduxToastr from 'react-redux-toastr';
 import store from '../../redux/store';
 
 import Routes from '../../routes';
+import { Footer } from '../../components/Footer/Footer.component';
 
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import './styles.scss';
 
 const App = () => (
+  <div>
     <div className="App">
       <Provider store={store}>
         <Router>
@@ -26,6 +29,8 @@ const App = () => (
         </Router>
       </Provider>
     </div>
+    <Footer />
+  </div>
 );
 
 export default App;
