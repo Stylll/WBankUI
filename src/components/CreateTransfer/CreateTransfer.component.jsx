@@ -29,7 +29,10 @@ const CreateTransfer = ({
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [serverError, setServerError] = useState('');
+
   const formSubmitted = useRef(false);
+  const hasServerOperationOccurred = useRef(false);
 
   useEffect(() => {
     if (!reduxIsLoading && accountTransferSuccess && formSubmitted.current) {
@@ -44,6 +47,12 @@ const CreateTransfer = ({
       formSubmitted.current = false;
     }
   }, [reduxIsLoading, accountTransferSuccess, closeModal]);
+
+  useEffect(() => {
+    if (errorMessage && hasServerOperationOccurred.current) {
+      setServerError(errorMessage);
+    }
+  }, [errorMessage]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -73,13 +82,14 @@ const CreateTransfer = ({
     });
 
     formSubmitted.current = true;
+    hasServerOperationOccurred.current = true;
   };
 
   const renderCreateForm = () => (
     <div className="transfer-container">
         <div>
             <p>Make a transfer</p>
-            <span className="error-text">{errorMessage}</span>
+            <span className="error-text">{serverError}</span>
             <TextInput
                 name="accountNo"
                 placeholder="3245"

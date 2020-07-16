@@ -27,7 +27,10 @@ const CreateDeposit = ({
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [serverError, setServerError] = useState('');
+
   const formSubmitted = useRef(false);
+  const hasServerOperationOccurred = useRef(false);
 
   useEffect(() => {
     if (!reduxIsLoading && accountDepositSuccess && formSubmitted.current) {
@@ -42,6 +45,12 @@ const CreateDeposit = ({
       formSubmitted.current = false;
     }
   }, [reduxIsLoading, accountDepositSuccess, closeModal]);
+
+  useEffect(() => {
+    if (errorMessage && hasServerOperationOccurred.current) {
+      setServerError(errorMessage);
+    }
+  }, [errorMessage]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -70,13 +79,14 @@ const CreateDeposit = ({
     });
 
     formSubmitted.current = true;
+    hasServerOperationOccurred.current = true;
   };
 
   const renderCreateForm = () => (
     <div className="deposit-container">
         <div>
             <p>Make a deposit</p>
-            <span className="error-text">{errorMessage}</span>
+            <span className="error-text">{serverError}</span>
             <TextInput
                 name="accountNo"
                 placeholder="3245"

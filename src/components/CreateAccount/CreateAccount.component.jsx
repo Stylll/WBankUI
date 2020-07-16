@@ -21,9 +21,12 @@ const CreateAccount = ({
     openingBalance: '',
   });
 
+  const [serverError, setServerError] = useState('');
+
   const [isLoading, setIsLoading] = useState(false);
 
   const formSubmitted = useRef(false);
+  const hasServerOperationOccurred = useRef(false);
 
   useEffect(() => {
     if (!reduxIsLoading && accountCreateSuccess && formSubmitted.current) {
@@ -38,6 +41,12 @@ const CreateAccount = ({
       formSubmitted.current = false;
     }
   }, [reduxIsLoading, accountCreateSuccess, closeModal]);
+
+  useEffect(() => {
+    if (errorMessage && hasServerOperationOccurred.current) {
+      setServerError(errorMessage);
+    }
+  }, [errorMessage]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -65,13 +74,14 @@ const CreateAccount = ({
     });
 
     formSubmitted.current = true;
+    hasServerOperationOccurred.current = true;
   };
 
   const renderCreateForm = () => (
     <div className="create-container">
         <div>
             <p>Create your bank account</p>
-            <span className="error-text">{errorMessage}</span>
+            <span className="error-text">{serverError}</span>
             <TextInput
                 name="name"
                 placeholder="My Savings Account"

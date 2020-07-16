@@ -27,7 +27,10 @@ const CreateWithdrawal = ({
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [serverError, setServerError] = useState('');
+
   const formSubmitted = useRef(false);
+  const hasServerOperationOccurred = useRef(false);
 
   useEffect(() => {
     if (!reduxIsLoading && accountWithdrawalSuccess && formSubmitted.current) {
@@ -42,6 +45,12 @@ const CreateWithdrawal = ({
       formSubmitted.current = false;
     }
   }, [reduxIsLoading, accountWithdrawalSuccess, closeModal]);
+
+  useEffect(() => {
+    if (errorMessage && hasServerOperationOccurred.current) {
+      setServerError(errorMessage);
+    }
+  }, [errorMessage]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -70,13 +79,14 @@ const CreateWithdrawal = ({
     });
 
     formSubmitted.current = true;
+    hasServerOperationOccurred.current = true;
   };
 
   const renderCreateForm = () => (
     <div className="withdraw-container">
         <div>
             <p>Make a withdrawal</p>
-            <span className="error-text">{errorMessage}</span>
+            <span className="error-text">{serverError}</span>
             <TextInput
                 name="accountNo"
                 placeholder="3245"
