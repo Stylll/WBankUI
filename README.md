@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# WBank App
+A small scale banking app to manage customer accounts.
+
+Link to the app here [https://wbankapp.herokuapp.com](https://wbankapp.herokuapp.com)
 
 ## Available Scripts
 

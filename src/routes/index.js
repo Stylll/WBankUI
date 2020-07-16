@@ -4,7 +4,7 @@ import HomePage from '../views/HomePage';
 import SignupPage from '../views/SignupPage';
 import SigninPage from '../views/SigninPage';
 import { getUserDetails } from '../helpers/utils';
-import AuthenticateView from '../components/Hoc/AuthenticateView';
+import AuthenticateView from '../components/Hoc/AuthenticateView.component';
 
 const Routes = () => (
   <Switch>
