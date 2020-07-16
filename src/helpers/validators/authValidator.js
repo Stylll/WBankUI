@@ -30,6 +30,8 @@ const validateSignin = (values) => {
   // customerId cannot be empty
   if (!values.customerId || (values.customerId && !values.customerId.trim())) {
     errors.customerId = 'customerId cannot be empty';
+  } else if (/[^0-9.]/gi.test(values.customerId.trim())) {
+    errors.customerId = 'customerId must be a number';
   }
 
   // email cannot be empty

@@ -134,8 +134,9 @@ export const calculateWithdrawal = (accounts, withdrawal) => {
 };
 
 export const calculateTransfer = (accounts, transfer) => {
-  console.log('transfer: ', transfer);
   const newAccounts = [...accounts];
+
+  // debit account
   const accountIndex = newAccounts
     .findIndex((account) => (account.accountNo === transfer.accountNo));
   if (accountIndex > -1) {
@@ -144,6 +145,17 @@ export const calculateTransfer = (accounts, transfer) => {
     - Number.parseFloat(transfer.cadAmountTransferred);
     accountToUpdate.currentBalance = balance;
     newAccounts[accountIndex] = accountToUpdate;
+  }
+
+  // credit account
+  const accountToCreditIndex = newAccounts
+    .findIndex((account) => (account.accountNo === transfer.transfer.accountNo));
+  if (accountToCreditIndex > -1) {
+    const accountToCredit = newAccounts[accountToCreditIndex];
+    const balance = Number.parseFloat(accountToCredit.currentBalance)
+    + Number.parseFloat(transfer.cadAmountTransferred);
+    accountToCredit.currentBalance = balance;
+    newAccounts[accountToCreditIndex] = accountToCredit;
   }
 
   return newAccounts;

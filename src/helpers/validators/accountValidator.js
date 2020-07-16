@@ -40,8 +40,8 @@ const validateCreateDeposit = (values) => {
   }
 
   // currency is required
-  if (!['cad', 'usd', 'pesos'].includes(values.currency)) {
-    errors.currency = 'currency must be either cad, usd, or pesos';
+  if (!['cad', 'usd', 'mxn'].includes(values.currency)) {
+    errors.currency = 'currency must be either cad, usd, or mxn';
   }
 
   return {
@@ -67,8 +67,8 @@ const validateCreateWithdrawal = (values) => {
   }
 
   // currency is required
-  if (!['cad', 'usd', 'pesos'].includes(values.currency)) {
-    errors.currency = 'currency must be either cad, usd, or pesos';
+  if (!['cad', 'usd', 'mxn'].includes(values.currency)) {
+    errors.currency = 'currency must be either cad, usd, or mxn';
   }
 
   return {
@@ -99,8 +99,8 @@ const validateCreateTransfer = (values) => {
   }
 
   // currency is required
-  if (!['cad', 'usd', 'pesos'].includes(values.currency)) {
-    errors.currency = 'currency must be either cad, usd, or pesos';
+  if (!['cad', 'usd', 'mxn'].includes(values.currency)) {
+    errors.currency = 'currency must be either cad, usd, or mxn';
   }
 
   return {
