@@ -22,35 +22,37 @@ export function* watchSigninUserSagaAsync() {
 export function* signupUserSagaAsync(action) {
   try {
     const response = yield call(UserAPI.signup, action.userData);
-    const userData = yield getUserDetails(response.data.token);
+    const userData = yield call(getUserDetails, response.data.token);
     yield put(signupUserSuccess(userData));
     // eslint-disable-next-line no-undef
     window.location.replace('/dashboard');
-    toastr.success('Signup', 'Your account has been successfully created');
+    yield call(toastr.success, 'Signup', 'Your account has been successfully created');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(signupUserFailure({
-      errors: error.response && error.response.data ? error.response.data.error : {},
+      errors: error.response && error.response.data
+      && error.response.data.error ? error.response.data.error : {},
       message: errorMessage,
     }));
-    toastr.error('', 'An error occurred');
+    yield call(toastr.error, '', 'An error occurred');
   }
 }
 
 export function* signinUserSagaAsync(action) {
   try {
     const response = yield call(UserAPI.signin, action.userData);
-    const userData = yield getUserDetails(response.data.token);
+    const userData = yield call(getUserDetails, response.data.token);
     yield put(signinUserSuccess(userData));
     // eslint-disable-next-line no-undef
     window.location.replace('/dashboard');
-    toastr.success('Signin', 'Your account has been successfully authenticated');
+    yield call(toastr.success, 'Signin', 'Your account has been successfully authenticated');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(signinUserFailure({
-      errors: error.response && error.response.data ? error.response.data.error : {},
+      errors: error.response && error.response.data
+      && error.response.data.error ? error.response.data.error : {},
       message: errorMessage,
     }));
-    toastr.error('', 'An error occurred');
+    yield call(toastr.error, '', 'An error occurred');
   }
 }

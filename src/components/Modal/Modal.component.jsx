@@ -15,7 +15,7 @@ const Modal = (props) => {
 
   const renderModal = () => (
     <div className="modal-container">
-      <div className="close-btn" onClick={onModalClose}>
+      <div className="close-btn" data-testid="modal-close" onClick={onModalClose}>
         &times;
       </div>
       <div className={`content ${customContentClass}`}>

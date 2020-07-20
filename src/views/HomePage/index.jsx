@@ -112,16 +112,16 @@ const HomePage = ({
     <div>
       <Header />
       <div className="navigation-container">
-        <div className="navbox create" onClick={showCreateAccount}>
+        <div data-testid="create-account" className="navbox create" onClick={showCreateAccount}>
           Create Account
         </div>
-        <div className="navbox deposit" onClick={showCreateDeposit}>
+        <div data-testid="create-deposit" className="navbox deposit" onClick={showCreateDeposit}>
           Deposit
         </div>
-        <div className="navbox withdrawal" onClick={showCreateWithdrawal}>
+        <div data-testid="create-withdrawal" className="navbox withdrawal" onClick={showCreateWithdrawal}>
           Withdrawal
         </div>
-        <div className="navbox transfer" onClick={showCreateTransfer}>
+        <div data-testid="create-transfer" className="navbox transfer" onClick={showCreateTransfer}>
           Transfer
         </div>
       </div>

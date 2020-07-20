@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage Test should render properly 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="header container"
+      >
+        <div
+          class="link"
+        >
+          WBank
+        </div>
+        <div
+          class="topRight"
+        />
+      </div>
+      <div
+        class="bottom container"
+      />
+      <div
+        class="navigation-container"
+      >
+        <div
+          class="navbox create"
+          data-testid="create-account"
+        >
+          Create Account
+        </div>
+        <div
+          class="navbox deposit"
+          data-testid="create-deposit"
+        >
+          Deposit
+        </div>
+        <div
+          class="navbox withdrawal"
+          data-testid="create-withdrawal"
+        >
+          Withdrawal
+        </div>
+        <div
+          class="navbox transfer"
+          data-testid="create-transfer"
+        >
+          Transfer
+        </div>
+      </div>
+      <div
+        class="account-container"
+      >
+        <div>
+          <div
+            class="loader-container "
+          >
+            <div
+              class="loader"
+              style="width: 20px; height: 20px;"
+            />
+            <span
+              class="message"
+            >
+              fetching account records, hang tight...
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal"
+      />
+      <div
+        class="modal"
+      />
+      <div
+        class="modal"
+      />
+      <div
+        class="modal"
+      />
+    </div>
+  </div>
+</body>
+`;

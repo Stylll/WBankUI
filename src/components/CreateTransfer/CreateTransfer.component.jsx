@@ -11,7 +11,7 @@ import './CreateTransfer.styles.scss';
 
 const CreateTransfer = ({
   createTransfer, isLoading: reduxIsLoading, closeModal,
-  errorMessage, accountTransferSuccess,
+  errorMessage, accountTransferSuccess, dataTestId,
 }) => {
   const [values, setValues] = useState({
     accountNo: '',
@@ -97,7 +97,8 @@ const CreateTransfer = ({
                 type="text"
                 value={values.accountNo}
                 error={formErrors.accountNo}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-accountNo`} />
             <TextInput
                 name="transferAccountNo"
                 placeholder="1294"
@@ -105,7 +106,8 @@ const CreateTransfer = ({
                 type="text"
                 value={values.transferAccountNo}
                 error={formErrors.transferAccountNo}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-transferAccountNo`} />
             <TextInput
                 name="amount"
                 placeholder="5000"
@@ -113,7 +115,8 @@ const CreateTransfer = ({
                 type="text"
                 value={values.amount}
                 error={formErrors.amount}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-amount`} />
             <Dropdown
                 options={currencies}
                 name="currency"
@@ -123,6 +126,7 @@ const CreateTransfer = ({
                 error={formErrors.currency}
                 onChange={handleChange}
                 placeholder="select amount currency"
+                dataTestId={`${dataTestId}-currency`}
             />
             <br />
             <Button
@@ -130,6 +134,7 @@ const CreateTransfer = ({
                 handleClick={handleClick}
                 showLoader={isLoading}
                 disabled={isLoading}
+                dataTestId={`${dataTestId}-transfer`}
             />
         </div>
         <br />
@@ -151,6 +156,11 @@ CreateTransfer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   accountTransferSuccess: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+CreateTransfer.defaultProps = {
+  dataTestId: 'createtransfer',
 };
 
 const mapStateToProps = ({ account }) => ({
@@ -161,6 +171,10 @@ const mapStateToProps = ({ account }) => ({
 
 const mapDispatchToProps = {
   createTransfer: accountActions.createTransfer,
+};
+
+export {
+  CreateTransfer,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTransfer);

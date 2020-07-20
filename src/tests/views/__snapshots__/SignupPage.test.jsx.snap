@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignupPage Test should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class=""
+    >
+      <div
+        class="header container"
+      >
+        <div
+          class="link"
+        >
+          WBank
+        </div>
+        <div
+          class="topRight"
+        />
+      </div>
+      <div
+        class="bottom container"
+      />
+      <div
+        class="authpage container"
+      >
+        <div
+          class="form-container"
+        >
+          <h2
+            class="intro-text"
+          >
+            Welcome To WBank
+          </h2>
+          <div
+            class="signup-container"
+          >
+            <div>
+              <p>
+                Create an account
+              </p>
+              <span
+                class="error-text"
+              />
+              <div
+                class="form-input"
+              >
+                <div
+                  class="title"
+                >
+                  Enter your fullname
+                </div>
+                <input
+                  class="text-input"
+                  data-testid="signup-fullname"
+                  id=""
+                  name="fullname"
+                  placeholder="Jim Halpert"
+                  type="text"
+                  value=""
+                />
+                <span
+                  class="info"
+                />
+                
+              </div>
+              <div
+                class="form-input"
+              >
+                <div
+                  class="title"
+                >
+                  Enter your email
+                </div>
+                <input
+                  class="text-input"
+                  data-testid="signup-email"
+                  id=""
+                  name="email"
+                  placeholder="jimhalpert@dundermuflin.com"
+                  type="text"
+                  value=""
+                />
+                <span
+                  class="info"
+                />
+                
+              </div>
+              <div
+                class="btn-button"
+              >
+                <button
+                  class="button "
+                  data-testid="signup-signup"
+                  type="submit"
+                >
+                  Signup
+                </button>
+              </div>
+            </div>
+            <br />
+            <h4
+              class="link"
+            >
+              Already have an account?. click here to signin
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

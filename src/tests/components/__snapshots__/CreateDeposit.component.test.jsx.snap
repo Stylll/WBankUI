@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateDeposit Test should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="deposit-account-container"
+    >
+      <div
+        class="form-container"
+      >
+        <div
+          class="deposit-container"
+        >
+          <div>
+            <p>
+              Make a deposit
+            </p>
+            <span
+              class="error-text"
+            />
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter the account number to deposit
+              </div>
+              <input
+                class="text-input"
+                data-testid="createdeposit-accountNo"
+                id=""
+                name="accountNo"
+                placeholder="3245"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter the amount to deposit
+              </div>
+              <input
+                class="text-input"
+                data-testid="createdeposit-amount"
+                id=""
+                name="amount"
+                placeholder="5000"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="drop-down"
+            >
+              <select
+                class="select"
+                data-testid="createdeposit-currency"
+                name="currency"
+              >
+                <option
+                  value=""
+                >
+                  select amount currency
+                </option>
+                <option
+                  value="cad"
+                >
+                  CAD
+                </option>
+                <option
+                  value="usd"
+                >
+                  USD
+                </option>
+                <option
+                  value="mxn"
+                >
+                  MXN
+                </option>
+              </select>
+              <span
+                class="chevy"
+              >
+                ∨
+              </span>
+              <span
+                class="info"
+              />
+              
+            </div>
+            <br />
+            <div
+              class="btn-button"
+            >
+              <button
+                class="button "
+                data-testid="createdeposit-deposit"
+                type="submit"
+              >
+                Deposit
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

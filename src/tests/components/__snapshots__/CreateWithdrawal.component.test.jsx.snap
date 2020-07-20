@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateWithdrawal Test should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="withdraw-account-container"
+    >
+      <div
+        class="form-container"
+      >
+        <div
+          class="withdraw-container"
+        >
+          <div>
+            <p>
+              Make a withdrawal
+            </p>
+            <span
+              class="error-text"
+            />
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter the account number to withdraw from
+              </div>
+              <input
+                class="text-input"
+                data-testid="createwithdrawal-accountNo"
+                id=""
+                name="accountNo"
+                placeholder="3245"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter the amount to withdraw
+              </div>
+              <input
+                class="text-input"
+                data-testid="createwithdrawal-amount"
+                id=""
+                name="amount"
+                placeholder="5000"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="drop-down"
+            >
+              <select
+                class="select"
+                data-testid="createwithdrawal-currency"
+                name="currency"
+              >
+                <option
+                  value=""
+                >
+                  select amount currency
+                </option>
+                <option
+                  value="cad"
+                >
+                  CAD
+                </option>
+                <option
+                  value="usd"
+                >
+                  USD
+                </option>
+                <option
+                  value="mxn"
+                >
+                  MXN
+                </option>
+              </select>
+              <span
+                class="chevy"
+              >
+                ∨
+              </span>
+              <span
+                class="info"
+              />
+              
+            </div>
+            <br />
+            <div
+              class="btn-button"
+            >
+              <button
+                class="button "
+                data-testid="createwithdrawal-withdraw"
+                type="submit"
+              >
+                Withdraw
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

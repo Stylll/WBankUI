@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateAccount Test should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="create-account-container"
+    >
+      <div
+        class="form-container"
+      >
+        <div
+          class="create-container"
+        >
+          <div>
+            <p>
+              Create your bank account
+            </p>
+            <span
+              class="error-text"
+            />
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter your preferred account name
+              </div>
+              <input
+                class="text-input"
+                data-testid="createaccount-name"
+                id=""
+                name="name"
+                placeholder="My Savings Account"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter your Opening balance
+              </div>
+              <input
+                class="text-input"
+                data-testid="createaccount-openingBalance"
+                id=""
+                name="openingBalance"
+                placeholder="5000"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="btn-button"
+            >
+              <button
+                class="button "
+                data-testid="createaccount-create"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
+          </div>
+          <br />
+          <h4
+            class="link"
+          >
+            Please note, opening balance is saved in CAD.
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

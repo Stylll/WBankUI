@@ -11,7 +11,7 @@ import './CreateDeposit.styles.scss';
 
 const CreateDeposit = ({
   createDeposit, isLoading: reduxIsLoading, closeModal,
-  errorMessage, accountDepositSuccess,
+  errorMessage, accountDepositSuccess, dataTestId,
 }) => {
   const [values, setValues] = useState({
     accountNo: '',
@@ -94,7 +94,8 @@ const CreateDeposit = ({
                 type="text"
                 value={values.accountNo}
                 error={formErrors.accountNo}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-accountNo`} />
             <TextInput
                 name="amount"
                 placeholder="5000"
@@ -102,7 +103,8 @@ const CreateDeposit = ({
                 type="text"
                 value={values.amount}
                 error={formErrors.amount}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-amount`} />
             <Dropdown
                 options={currencies}
                 name="currency"
@@ -112,6 +114,7 @@ const CreateDeposit = ({
                 error={formErrors.currency}
                 onChange={handleChange}
                 placeholder="select amount currency"
+                dataTestId={`${dataTestId}-currency`}
             />
             <br />
             <Button
@@ -119,6 +122,7 @@ const CreateDeposit = ({
                 handleClick={handleClick}
                 showLoader={isLoading}
                 disabled={isLoading}
+                dataTestId={`${dataTestId}-deposit`}
             />
         </div>
         <br />
@@ -140,6 +144,11 @@ CreateDeposit.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   accountDepositSuccess: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+CreateDeposit.defaultProps = {
+  dataTestId: 'createdeposit',
 };
 
 const mapStateToProps = ({ account }) => ({
@@ -150,6 +159,10 @@ const mapStateToProps = ({ account }) => ({
 
 const mapDispatchToProps = {
   createDeposit: accountActions.createDeposit,
+};
+
+export {
+  CreateDeposit,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateDeposit);

@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput Component should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="form-input"
+    >
+      <div
+        class="title"
+      >
+        Fullname
+      </div>
+      <input
+        class="text-input"
+        data-testid="textinput"
+        id=""
+        name="fullname"
+        placeholder="enter your name"
+        type="text"
+        value="Johnson"
+      />
+      <span
+        class="info"
+      />
+      
+    </div>
+  </div>
+</body>
+`;
+
+exports[`TextInput Component should render properly with error message 1`] = `
+<body>
+  <div>
+    <div
+      class="form-input"
+    >
+      <div
+        class="title"
+      >
+        Fullname
+      </div>
+      <input
+        class="text-input"
+        data-testid="textinput"
+        id=""
+        name="fullname"
+        placeholder="enter your name"
+        type="text"
+        value="Johnson"
+      />
+      <span
+        class="error"
+        id="fullname-error"
+      >
+        fullname is required
+      </span>
+    </div>
+  </div>
+</body>
+`;

@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader.component';
 const Button = (props) => {
   const {
     title, handleClick, disabled, customClassName,
-    customStyles, buttonType, showLoader,
+    customStyles, buttonType, showLoader, dataTestId,
   } = props;
 
   const loaderStyles = {
@@ -17,7 +17,7 @@ const Button = (props) => {
 
   return (
     <div className="btn-button">
-      <button type={buttonType} className={`button ${customClassName}`}
+      <button data-testid={dataTestId} type={buttonType} className={`button ${customClassName}`}
         style={customStyles} onClick={handleClick} disabled={disabled}
       >
         {showLoader ? <Loader customStyles={loaderStyles} /> : title}
@@ -34,6 +34,7 @@ Button.propTypes = {
   buttonType: PropTypes.string,
   disabled: PropTypes.bool,
   showLoader: PropTypes.bool,
+  dataTestId: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -42,6 +43,7 @@ Button.defaultProps = {
   customClassName: '',
   disabled: false,
   showLoader: false,
+  dataTestId: 'button',
 };
 
 export default Button;

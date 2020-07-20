@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 
-const initialState = {
+export const initialState = {
   user: {},
   isLoading: false,
   errorMessage: '',

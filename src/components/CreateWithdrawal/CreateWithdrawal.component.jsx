@@ -11,7 +11,7 @@ import './CreateWithdrawal.styles.scss';
 
 const CreateWithdrawal = ({
   createWithdrawal, isLoading: reduxIsLoading, closeModal,
-  errorMessage, accountWithdrawalSuccess,
+  errorMessage, accountWithdrawalSuccess, dataTestId,
 }) => {
   const [values, setValues] = useState({
     accountNo: '',
@@ -94,7 +94,8 @@ const CreateWithdrawal = ({
                 type="text"
                 value={values.accountNo}
                 error={formErrors.accountNo}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-accountNo`} />
             <TextInput
                 name="amount"
                 placeholder="5000"
@@ -102,7 +103,8 @@ const CreateWithdrawal = ({
                 type="text"
                 value={values.amount}
                 error={formErrors.amount}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-amount`} />
             <Dropdown
                 options={currencies}
                 name="currency"
@@ -112,6 +114,7 @@ const CreateWithdrawal = ({
                 error={formErrors.currency}
                 onChange={handleChange}
                 placeholder="select amount currency"
+                dataTestId={`${dataTestId}-currency`}
             />
             <br />
             <Button
@@ -119,6 +122,7 @@ const CreateWithdrawal = ({
                 handleClick={handleClick}
                 showLoader={isLoading}
                 disabled={isLoading}
+                dataTestId={`${dataTestId}-withdraw`}
             />
         </div>
         <br />
@@ -140,6 +144,11 @@ CreateWithdrawal.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   accountWithdrawalSuccess: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+CreateWithdrawal.defaultProps = {
+  dataTestId: 'createwithdrawal',
 };
 
 const mapStateToProps = ({ account }) => ({
@@ -150,6 +159,10 @@ const mapStateToProps = ({ account }) => ({
 
 const mapDispatchToProps = {
   createWithdrawal: accountActions.createWithdrawal,
+};
+
+export {
+  CreateWithdrawal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateWithdrawal);

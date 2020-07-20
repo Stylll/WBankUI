@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateTransfer Test should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="transfer-account-container"
+    >
+      <div
+        class="form-container"
+      >
+        <div
+          class="transfer-container"
+        >
+          <div>
+            <p>
+              Make a transfer
+            </p>
+            <span
+              class="error-text"
+            />
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter the account number to transfer from
+              </div>
+              <input
+                class="text-input"
+                data-testid="createtransfer-accountNo"
+                id=""
+                name="accountNo"
+                placeholder="3245"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter the account number to transfer to
+              </div>
+              <input
+                class="text-input"
+                data-testid="createtransfer-transferAccountNo"
+                id=""
+                name="transferAccountNo"
+                placeholder="1294"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="form-input"
+            >
+              <div
+                class="title"
+              >
+                Enter the amount to transfer
+              </div>
+              <input
+                class="text-input"
+                data-testid="createtransfer-amount"
+                id=""
+                name="amount"
+                placeholder="5000"
+                type="text"
+                value=""
+              />
+              <span
+                class="info"
+              />
+              
+            </div>
+            <div
+              class="drop-down"
+            >
+              <select
+                class="select"
+                data-testid="createtransfer-currency"
+                name="currency"
+              >
+                <option
+                  value=""
+                >
+                  select amount currency
+                </option>
+                <option
+                  value="cad"
+                >
+                  CAD
+                </option>
+                <option
+                  value="usd"
+                >
+                  USD
+                </option>
+                <option
+                  value="mxn"
+                >
+                  MXN
+                </option>
+              </select>
+              <span
+                class="chevy"
+              >
+                ∨
+              </span>
+              <span
+                class="info"
+              />
+              
+            </div>
+            <br />
+            <div
+              class="btn-button"
+            >
+              <button
+                class="button "
+                data-testid="createtransfer-transfer"
+                type="submit"
+              >
+                Transfer
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
