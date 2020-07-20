@@ -9,7 +9,7 @@ import './CreateAccount.styles.scss';
 
 const CreateAccount = ({
   createAccount, isLoading: reduxIsLoading, closeModal,
-  errorMessage, accountCreateSuccess,
+  errorMessage, accountCreateSuccess, dataTestId,
 }) => {
   const [values, setValues] = useState({
     name: '',
@@ -89,7 +89,8 @@ const CreateAccount = ({
                 type="text"
                 value={values.name}
                 error={formErrors.name}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-name`} />
             <TextInput
                 name="openingBalance"
                 placeholder="5000"
@@ -97,12 +98,14 @@ const CreateAccount = ({
                 type="text"
                 value={values.openingBalance}
                 error={formErrors.openingBalance}
-                onChange={handleChange} />
+                onChange={handleChange}
+                dataTestId={`${dataTestId}-openingBalance`} />
             <Button
                 title="Create"
                 handleClick={handleClick}
                 showLoader={isLoading}
                 disabled={isLoading}
+                dataTestId={`${dataTestId}-create`}
             />
         </div>
         <br />
@@ -127,6 +130,11 @@ CreateAccount.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   accountCreateSuccess: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+CreateAccount.defaultProps = {
+  dataTestId: 'createaccount',
 };
 
 const mapStateToProps = ({ account }) => ({
@@ -137,6 +145,10 @@ const mapStateToProps = ({ account }) => ({
 
 const mapDispatchToProps = {
   createAccount: accountActions.createAccount,
+};
+
+export {
+  CreateAccount,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);

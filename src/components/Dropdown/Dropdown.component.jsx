@@ -7,6 +7,7 @@ const Dropdown = ({
   name, value, placeholder, onChange, info,
   error, required, styles, options, disabled,
   optionsValueProperty, optionsTitleProperty,
+  dataTestId,
 }) => {
   const iconClassName = disabled ? 'chevy disabled' : 'chevy';
 
@@ -14,7 +15,7 @@ const Dropdown = ({
     <div className="drop-down">
       <select className="select" required={required}
         onChange={onChange} name={name} value={value} style={styles}
-        disabled={disabled}
+        disabled={disabled} data-testid={dataTestId}
       >
         <option value="">{placeholder}</option>
         {options.map(
@@ -49,10 +50,12 @@ Dropdown.propTypes = {
   options: PropTypes.array.isRequired,
   optionsTitleProperty: PropTypes.string.isRequired,
   optionsValueProperty: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string,
 };
 
 Dropdown.defaultProps = {
   disabled: false,
+  dataTestId: 'dropdown',
 };
 
 export default Dropdown;

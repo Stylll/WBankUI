@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="btn-button"
+    >
+      <button
+        class="button "
+        data-testid="button"
+        type="submit"
+      >
+        Deposit
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Button Component should render properly when disabled 1`] = `
+<body>
+  <div>
+    <div
+      class="btn-button"
+    >
+      <button
+        class="button "
+        data-testid="button"
+        disabled=""
+        type="submit"
+      >
+        Deposit
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Button Component should render properly when showLoader is true 1`] = `
+<body>
+  <div>
+    <div
+      class="btn-button"
+    >
+      <button
+        class="button "
+        data-testid="button"
+        type="submit"
+      >
+        <div
+          class="loader-container "
+        >
+          <div
+            class="loader"
+            style="width: 10px; height: 10px;"
+          />
+        </div>
+      </button>
+    </div>
+  </div>
+</body>
+`;

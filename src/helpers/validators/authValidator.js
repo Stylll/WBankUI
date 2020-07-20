@@ -19,9 +19,14 @@ const validateSignup = (values) => {
     errors.email = 'email is invalid';
   }
 
+  const result = {
+    fullname: errors.fullname || '',
+    email: errors.email || '',
+  };
+
   return {
     isValid: isEmpty(errors),
-    errors,
+    errors: result,
   };
 };
 
@@ -39,9 +44,14 @@ const validateSignin = (values) => {
     errors.email = 'email cannot be empty';
   }
 
+  const result = {
+    customerId: errors.customerId || '',
+    email: errors.email || '',
+  };
+
   return {
     isValid: isEmpty(errors),
-    errors,
+    errors: result,
   };
 };
 

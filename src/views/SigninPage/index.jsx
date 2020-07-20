@@ -74,7 +74,8 @@ const SigninPage = ({
                     type="text"
                     value={values.customerId}
                     error={formErrors.customerId}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    dataTestId="signin-customerId" />
                 <TextInput
                     name="email"
                     placeholder="jimhalpert@dundermuflin.com"
@@ -82,12 +83,14 @@ const SigninPage = ({
                     type="text"
                     value={values.email}
                     error={formErrors.email}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    dataTestId="signin-email" />
                 <Button
                     title="Signin"
                     handleClick={handleClick}
                     showLoader={isLoading}
                     disabled={isLoading}
+                    dataTestId="signin-signin"
                 />
             </div>
             <br />

@@ -74,7 +74,8 @@ const SignupPage = ({
                     type="text"
                     value={values.fullname}
                     error={formErrors.fullname}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    dataTestId="signup-fullname" />
                 <TextInput
                     name="email"
                     placeholder="jimhalpert@dundermuflin.com"
@@ -82,12 +83,14 @@ const SignupPage = ({
                     type="text"
                     value={values.email}
                     error={formErrors.email}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    dataTestId="signup-email" />
                 <Button
                     title="Signup"
                     handleClick={handleClick}
                     showLoader={isLoading}
                     disabled={isLoading}
+                    dataTestId="signup-signup"
                 />
             </div>
             <br />

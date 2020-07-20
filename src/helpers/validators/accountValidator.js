@@ -17,9 +17,14 @@ const validateCreateAccount = (values) => {
     errors.openingBalance = 'opening balance must be greater than 1';
   }
 
+  const result = {
+    name: errors.name || '',
+    openingBalance: errors.openingBalance || '',
+  };
+
   return {
     isValid: isEmpty(errors),
-    errors,
+    errors: result,
   };
 };
 
@@ -44,9 +49,15 @@ const validateCreateDeposit = (values) => {
     errors.currency = 'currency must be either cad, usd, or mxn';
   }
 
+  const result = {
+    accountNo: errors.accountNo || '',
+    amount: errors.amount || '',
+    currency: errors.currency || '',
+  };
+
   return {
     isValid: isEmpty(errors),
-    errors,
+    errors: result,
   };
 };
 
@@ -71,9 +82,15 @@ const validateCreateWithdrawal = (values) => {
     errors.currency = 'currency must be either cad, usd, or mxn';
   }
 
+  const result = {
+    accountNo: errors.accountNo || '',
+    amount: errors.amount || '',
+    currency: errors.currency || '',
+  };
+
   return {
     isValid: isEmpty(errors),
-    errors,
+    errors: result,
   };
 };
 
@@ -103,9 +120,16 @@ const validateCreateTransfer = (values) => {
     errors.currency = 'currency must be either cad, usd, or mxn';
   }
 
+  const result = {
+    accountNo: errors.accountNo || '',
+    transferAccountNo: errors.transferAccountNo || '',
+    amount: errors.amount || '',
+    currency: errors.currency || '',
+  };
+
   return {
     isValid: isEmpty(errors),
-    errors,
+    errors: result,
   };
 };
 

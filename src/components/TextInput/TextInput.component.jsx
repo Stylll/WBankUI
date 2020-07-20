@@ -5,13 +5,13 @@ import './TextInput.styles.scss';
 
 const TextInput = ({
   id, name, value, title, type, placeholder,
-  onChange, info, error, required,
+  onChange, info, error, required, dataTestId,
 }) => {
   const newPlaceholder = (required) ? `${placeholder} *` : placeholder;
   return (
     <div className="form-input">
                 <div className="title">{title}</div>
-                <input type={type} name={name}
+                <input type={type} name={name} data-testid={dataTestId}
                     id={id} className="text-input" placeholder={newPlaceholder}
                     onChange={onChange} value={value}
                 />
@@ -33,6 +33,15 @@ TextInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   required: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
+  dataTestId: PropTypes.string,
+};
+
+TextInput.defaultProps = {
+  id: '',
+  title: '',
+  info: '',
+  required: false,
+  dataTestId: 'textinput',
 };
 
 export default TextInput;

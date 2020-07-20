@@ -4,7 +4,7 @@ import {
   calculateWithdrawal, calculateTransfer,
 } from '../../helpers/utils';
 
-const initialState = {
+export const initialState = {
   accounts: [],
   isLoading: false,
   isCreateAccountLoading: false,

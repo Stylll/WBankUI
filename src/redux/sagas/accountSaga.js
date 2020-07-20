@@ -45,14 +45,14 @@ export function* getAccountsSagaAsync(action) {
     const response = yield call(AccountApi.getAccounts);
     yield put(getAccountsSuccess(response.data.data));
     // eslint-disable-next-line no-undef
-    toastr.success('', 'Account records retrieved');
+    yield call(toastr.success, '', 'Account records retrieved');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(getAccountsFailure({
       errors: error.response && error.response.data ? error.response.data.error : {},
       message: errorMessage,
     }));
-    toastr.error('', errorMessage || 'An error occurred');
+    yield call(toastr.error, '', errorMessage || 'An error occurred');
   }
 }
 
@@ -61,14 +61,15 @@ export function* createAccountSagaAsync(action) {
     const response = yield call(AccountApi.createAccount, action.accountData);
     yield put(createAccountSuccess(response.data.data));
     // eslint-disable-next-line no-undef
-    toastr.success('', 'Account created successfully');
+    yield call(toastr.success, '', 'Account created successfully');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(createAccountFailure({
-      errors: error.response && error.response.data ? error.response.data.error : {},
+      errors: error.response && error.response.data
+      && error.response.data.error ? error.response.data.error : {},
       message: errorMessage,
     }));
-    toastr.error('', errorMessage || 'An error occurred');
+    yield call(toastr.error, '', errorMessage || 'An error occurred');
   }
 }
 
@@ -77,14 +78,15 @@ export function* depositAccountSagaAsync(action) {
     const response = yield call(AccountApi.makeDeposit, action.requestData);
     yield put(createDepositSuccess(response.data.data));
     // eslint-disable-next-line no-undef
-    toastr.success('', 'Account deposit completed');
+    yield call(toastr.success, '', 'Account deposit completed');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(createDepositFailure({
-      errors: error.response && error.response.data ? error.response.data.error : {},
+      errors: error.response && error.response.data
+      && error.response.data.error ? error.response.data.error : {},
       message: errorMessage,
     }));
-    toastr.error('', errorMessage || 'An error occurred');
+    yield call(toastr.error, '', errorMessage || 'An error occurred');
   }
 }
 
@@ -93,14 +95,15 @@ export function* withdrawAccountSagaAsync(action) {
     const response = yield call(AccountApi.makeWithdrawal, action.requestData);
     yield put(createWithdrawalSuccess(response.data.data));
     // eslint-disable-next-line no-undef
-    toastr.success('', 'Account withdrawal completed');
+    yield call(toastr.success, '', 'Account withdrawal completed');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(createWithdrawalFailure({
-      errors: error.response && error.response.data ? error.response.data.error : {},
+      errors: error.response && error.response.data
+      && error.response.data.error ? error.response.data.error : {},
       message: errorMessage,
     }));
-    toastr.error('', errorMessage || 'An error occurred');
+    yield call(toastr.error, '', errorMessage || 'An error occurred');
   }
 }
 export function* transferAccountSagaAsync(action) {
@@ -108,13 +111,14 @@ export function* transferAccountSagaAsync(action) {
     const response = yield call(AccountApi.makeTransfer, action.requestData);
     yield put(createTransferSuccess(response.data.data));
     // eslint-disable-next-line no-undef
-    toastr.success('', 'Account transfer completed');
+    yield call(toastr.success, '', 'Account transfer completed');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(createTransferFailure({
-      errors: error.response && error.response.data ? error.response.data.error : {},
+      errors: error.response && error.response.data
+      && error.response.data.error ? error.response.data.error : {},
       message: errorMessage,
     }));
-    toastr.error('', errorMessage || 'An error occurred');
+    yield call(toastr.error, '', errorMessage || 'An error occurred');
   }
 }
